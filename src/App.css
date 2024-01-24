@@ -34,9 +34,46 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 1em;
+  position: relative;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin-top: 8rem;
+}
+
+.player {
+  font-size: 2rem;
+  margin-top: -20px;
+  font-weight: 600;
+}
+
+.color-1 {
+  color:rgb(226, 255, 154)
+}
+.color-2 {
+  color:rgb(190, 162, 255)
+}
+
+.winner {
+  background-color: #196da1;
+  padding: 0.75rem 0;
+  width: 400px;
+  border-radius: 8px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
