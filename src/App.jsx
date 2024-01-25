@@ -48,9 +48,7 @@ function App() {
       // Change background color with transition
       setGameState("end");
       updateGameScore();
-      if (roundScore[0] !== roundScore[1]) {
-        handleConfetti();
-      }
+      handleConfetti();
       document.body.style.backgroundColor = `${
         roundScore[0] > roundScore[1] ? "#0F683D" : "#0F4668"
       }`;
