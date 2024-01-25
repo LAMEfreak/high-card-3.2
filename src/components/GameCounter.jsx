@@ -12,6 +12,7 @@ const GameCounter = ({ player1Score, player2Score }) => {
         borderRadius: "8px",
         padding: "1rem",
         backgroundColor: "#282828",
+        marginBottom: "4rem",
       }}
     >
       <thead>

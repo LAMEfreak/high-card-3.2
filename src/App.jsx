@@ -46,7 +46,7 @@ function App() {
     // Check no more cards, determine winner and end game
     if (cardDeck.length === 0) {
       // Change background color with transition
-      document.body.style.backgroundColor = "#0d3e5d";
+      document.body.style.backgroundColor = "#156077";
       document.body.style.transition = "background-color 0.5s ease";
       setGameState("end");
       updateGameScore();
