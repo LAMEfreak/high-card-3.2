@@ -46,13 +46,15 @@ function App() {
     // Check no more cards, determine winner and end game
     if (cardDeck.length === 0) {
       // Change background color with transition
-      document.body.style.backgroundColor = "#156077";
-      document.body.style.transition = "background-color 0.5s ease";
       setGameState("end");
       updateGameScore();
       if (roundScore[0] !== roundScore[1]) {
         handleConfetti();
       }
+      document.body.style.backgroundColor = `${
+        roundScore[0] > roundScore[1] ? "#0F683D" : "#0F4668"
+      }`;
+      document.body.style.transition = "background-color 0.5s ease";
       return generateWinnerMessage();
     }
   };
