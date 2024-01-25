@@ -67,8 +67,5 @@ const makeDeck = () => {
   return newDeck;
 };
 
-
-
 // Export functionality to create a shuffled 52-card deck
 export const makeShuffledDeck = () => shuffleCards(makeDeck());
-

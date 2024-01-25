@@ -1,8 +1,10 @@
 import "./App.css";
+import GameCounter from "./components/GameCounter.jsx";
 import PlayerCounter from "./components/PlayerCounter.jsx";
 import PlayingCard from "./components/PlayingCard.jsx";
 import { makeShuffledDeck } from "./utils.jsx";
 import { useState } from "react";
+import confetti from "canvas-confetti";
 
 // Check winner of round
 const checkWinner = (card1, card2) => {
@@ -15,6 +17,10 @@ const checkWinner = (card1, card2) => {
   }
 };
 
+const handleConfetti = () => {
+  confetti();
+};
+
 function App() {
   // Set default value of card deck to new shuffled deck
   const [cardDeck, setCardDeck] = useState(makeShuffledDeck());
@@ -22,11 +28,13 @@ function App() {
   const [currCards, setCurrCards] = useState([]);
   // gameState tracks the game state: 'start', 'play' and 'end'
   const [gameState, setGameState] = useState("start");
-  // score tracker
+  // Round score tracker
   const [roundScore, setRoundScore] = useState([0, 0]);
+  // Game score tracker
+  const [gameScore, setGameScore] = useState([0, 0]);
 
   const dealCards = () => {
-    if (gameState === 'start') setGameState("play")
+    if (gameState === "start") setGameState("play");
     const newCurrCards = [cardDeck.pop(), cardDeck.pop()];
     setCurrCards(newCurrCards);
     const winner = checkWinner(newCurrCards[0], newCurrCards[1]);
@@ -41,6 +49,10 @@ function App() {
       document.body.style.backgroundColor = "#0d3e5d";
       document.body.style.transition = "background-color 0.5s ease";
       setGameState("end");
+      updateGameScore();
+      if (roundScore[0] !== roundScore[1]) {
+        handleConfetti();
+      }
       return generateWinnerMessage();
     }
   };
@@ -50,6 +62,21 @@ function App() {
     const newRoundScore = [...roundScore];
     newRoundScore[winner] += 1;
     return newRoundScore;
+  };
+
+  // Update game score
+  const updateGameScore = () => {
+    if (roundScore[0] > roundScore[1]) {
+      setGameScore((prevGameScore) => [
+        (prevGameScore[0] += 1),
+        prevGameScore[1],
+      ]);
+    } else if (roundScore[0] < roundScore[1]) {
+      setGameScore((prevGameScore) => [
+        prevGameScore[0],
+        (prevGameScore[1] += 1),
+      ]);
+    }
   };
 
   const generateWinnerMessage = () => {
@@ -91,14 +118,23 @@ function App() {
     <>
       <div className="card">
         <h1>React High Card</h1>
+        <GameCounter player1Score={gameScore[0]} player2Score={gameScore[1]} />
         {gameState === "end" && (
           <div className="winner">{generateWinnerMessage()}</div>
         )}
         {gameState !== "start" && (
           <div className="cards-wrapper">
-            <PlayerCounter playerNumber={1} roundScore={roundScore[0]} />
+            <PlayerCounter
+              playerNumber={1}
+              roundScore={roundScore[0]}
+              gameState={gameState}
+            />
             {currCardElems}
-            <PlayerCounter playerNumber={2} roundScore={roundScore[1]} />
+            <PlayerCounter
+              playerNumber={2}
+              roundScore={roundScore[1]}
+              gameState={gameState}
+            />
           </div>
         )}
         {gameState === "start" && <h2>Click Deal to begin!</h2>}
