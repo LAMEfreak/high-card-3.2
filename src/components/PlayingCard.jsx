@@ -1,6 +1,16 @@
 import PropTypes from "prop-types";
+import { imageUrls } from "../utils.jsx";
+import { useEffect } from "react";
 
 const PlayingCard = ({ suit, name }) => {
+  // Preload images
+  useEffect(() => {
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, []);
+
   return (
     <>
       <img
