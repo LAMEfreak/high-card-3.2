@@ -1,5 +1,5 @@
 # High Card
-Try the High Card game here: https://lamefreak.github.io/world-clock-3.2/
+Try the High Card game here: https://lamefreak.github.io/high-card-3.2/
 
 <img src="./public/preview-1.png" alt="Preview of High Card 1" width="400"/>
 <img src="./public/preview-2.png" alt="Preview of High Card 2" width="400"/>
