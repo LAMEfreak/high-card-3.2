@@ -14,7 +14,7 @@ const PlayingCard = ({ suit, name }) => {
   return (
     <>
       <img
-        src={`/cards/${suit}-${name}.svg`}
+        src={`./cards/${suit}-${name}.svg`}
         alt={`${name} of ${suit}`}
         width="150"
         height="auto"
