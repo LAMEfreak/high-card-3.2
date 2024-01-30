@@ -140,7 +140,7 @@ function App() {
         {gameState === "start" && <h2>Click Deal to begin!</h2>}
         <p>Cards Left: {cardDeck.length}</p>
         <br />
-        <button onClick={gameState !== "end" ? dealCards : restartRound}>
+        <button onClick={gameState !== "end" ? dealCards : restartRound} style={{color: "white"}}>
           {gameState !== "end" ? `Deal` : `Restart`}
         </button>
       </div>
